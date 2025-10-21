@@ -11,10 +11,16 @@ In this workshop we aim to:
 ## Getting started
 
 ```bash
+git clone https://github.com/mikkel-sc/workshop-ai-coding-oct-2025.git
+cd workshop-ai-coding-oct-2025/ProtectionSociety
 npm install && npm start
 ```
 
-You should now be up and running.
+You should now be up and running, and can see the app running here:
+
+```text
+http://localhost:5173/
+```
 
 ## Planning mode
 
@@ -59,7 +65,7 @@ And now undo your changes again, (and clear your context `/clear` in Claude), be
 
 ## Context
 
-> Context helps the AI get a fuller picture of what we want it to do - it is especially important to realise that the context is limited in size - that is, it can only "remember" as much as the context can hold - which means it is important to only tell it things it needs to do when it needs to know.
+Context helps the AI get a fuller picture of what we want it to do - it is especially important to realise that the context is limited in size - that is, it can only "remember" as much as the context can hold - which means it is important to only tell it things it needs to do when it needs to know.
 
 ### Practical exmple
 
@@ -92,4 +98,10 @@ TODO: demo a sub agent that knows about frontend standards, and can fix the prob
 
 ## Claude skills
 
-TODO: demo a skill that knows about frontend standards, and examples, and can fix the problem.
+TODO:
+
+- demo a skill that knows about frontend standards, (using examples)
+- fix the problem with the skill.
+- Also Claude can generally look through the codebase and find and plan using the skill
+- Create an extensive plan and write it out
+- Work on the plan in parallel (as there are updated for redux and fetch in seperate pages)
