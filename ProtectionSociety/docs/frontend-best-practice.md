@@ -9,6 +9,7 @@
 - **NO exceptions**: Every API call, data fetch, or server request MUST use TanStack Query
 - **Convert on sight**: If you encounter code using `fetch`, `axios`, `useEffect` for data loading, or any other data fetching method - you MUST immediately convert it to TanStack Query
 - **No manual state management** for server data: No `useState` + `useEffect` patterns for loading data
+- **Must not fetch in components** Make sure to create API calls and use those with the Tanstack `useQuery` - see `@ProtectionSociety/client/src/api/tasksApi.ts` for a sample.
 
 ### Why TanStack Query?
 
