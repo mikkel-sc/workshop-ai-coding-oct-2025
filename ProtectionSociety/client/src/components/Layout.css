@@ -1,0 +1,20 @@
+/* Default: show dark logo, hide light logo (for dark mode) */
+.logo-dark {
+    display: block;
+}
+
+.logo-light {
+    display: none;
+}
+
+/* Light mode: hide dark logo, show light logo */
+@media (prefers-color-scheme: light) {
+    .logo-dark {
+        display: none;
+    }
+    
+    .logo-light {
+        display: block;
+    }
+}
+

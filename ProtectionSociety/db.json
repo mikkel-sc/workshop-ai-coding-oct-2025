@@ -1,0 +1,52 @@
+{
+  "checklist": [
+    {
+      "id": "1",
+      "date": "2025-10-20T08:00:00Z",
+      "cleanliness": true,
+      "beans_full": true,
+      "water_filled": true
+    },
+    {
+      "id": "2",
+      "date": "2025-10-21T08:01:00Z",
+      "cleanliness": true,
+      "beans_full": false,
+      "water_filled": true
+    },
+    {
+      "id": "200b",
+      "date": "2025-10-21T02:30:03.962Z",
+      "cleanliness": true,
+      "beans_full": false,
+      "water_filled": true
+    },
+    {
+      "id": "672d",
+      "date": "2025-10-21T02:30:31.315Z",
+      "cleanliness": false,
+      "beans_full": true,
+      "water_filled": true
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "description": "Fill the coffee beans",
+      "completed": false,
+      "sourceChecklistId": "2"
+    },
+    {
+      "id": "f552",
+      "description": "Fill the coffee beans",
+      "completed": false,
+      "sourceChecklistId": "200b"
+    },
+    {
+      "id": "eed1",
+      "description": "Clean the coffee machine",
+      "completed": false,
+      "sourceChecklistId": "672d"
+    }
+  ]
+}
