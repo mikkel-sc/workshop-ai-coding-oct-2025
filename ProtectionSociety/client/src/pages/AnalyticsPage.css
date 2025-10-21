@@ -1,0 +1,78 @@
+:root {
+  --analytics-bg: #ffffff;
+  --analytics-text: #213547;
+  --analytics-stats-bg: #f5f5f5;
+  --analytics-border: #ddd;
+  --analytics-header-bg: #f0f0f0;
+  --analytics-success: #22c55e;
+  --analytics-error: #ef4444;
+  --analytics-warning: #f59e0b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --analytics-bg: #020202;
+    --analytics-text: rgba(255, 255, 255, 0.87);
+    --analytics-stats-bg: #1a1a1a;
+    --analytics-border: #444;
+    --analytics-header-bg: #2a2a2a;
+    --analytics-success: #22c55e;
+    --analytics-error: #ef4444;
+    --analytics-warning: #f59e0b;
+  }
+}
+
+.analytics-container {
+  color: var(--analytics-text);
+}
+
+.analytics-stats {
+  font-size: 1.2em;
+  padding: 1rem;
+  background-color: var(--analytics-stats-bg);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.analytics-stats p {
+  margin: 0.5rem 0;
+}
+
+.stat-success {
+  color: var(--analytics-success);
+}
+
+.stat-warning {
+  color: var(--analytics-warning);
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: var(--analytics-bg);
+}
+
+.results-table th {
+  padding: 0.75rem;
+  border: 1px solid var(--analytics-border);
+  background-color: var(--analytics-header-bg);
+  text-align: left;
+  font-weight: 600;
+}
+
+.results-table td {
+  padding: 0.75rem;
+  border: 1px solid var(--analytics-border);
+}
+
+.status-ok {
+  color: var(--analytics-success);
+  font-weight: bold;
+}
+
+.status-fail {
+  color: var(--analytics-error);
+  font-weight: bold;
+}
+

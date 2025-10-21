@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "npm install --prefix client",
     "api": "json-server --watch db.json --port 3001",
     "client": "npm run dev --prefix client",
     "start": "npm-run-all --parallel api client"

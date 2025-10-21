@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { ChecklistEntry } from '../types';
 import { API_URL } from '../config';
+import './AnalyticsPage.css';
 
 export function AnalyticsPage() {
   const [entries, setEntries] = useState<ChecklistEntry[]>([]);
@@ -45,28 +46,43 @@ export function AnalyticsPage() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
+    <div className="analytics-container">
       <h2>Coffee Machine Analytics (Fetch API)</h2>
-      <div style={{ fontSize: '1.2em' }}>
+      <div className="analytics-stats">
         <p>Total Checks Performed: <strong>{totalChecks}</strong></p>
-        <p style={{ color: 'green' }}>
+        <p className="stat-success">
           Successful (All OK): <strong>{successfulChecks}</strong>
         </p>
-        <p style={{ color: 'orange' }}>
+        <p className="stat-warning">
           Problems Logged: <strong>{problemChecks}</strong>
         </p>
       </div>
 
-      <h3>Raw Data Log:</h3>
-      <ul>
-        {entries.map(entry => (
-          <li key={entry.id}>
-            {new Date(entry.date).toLocaleDateString()}
-            - Beans: {entry.beans_full ? 'OK' : 'FAIL'}
-            - Water: {entry.water_filled ? 'OK' : 'FAIL'}
-          </li>
-        ))}
-      </ul>
+      <h3>Results Table:</h3>
+      <table className="results-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Beans</th>
+            <th>Water</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries.map(entry => (
+            <tr key={entry.id}>
+              <td>
+                {new Date(entry.date).toLocaleDateString()}
+              </td>
+              <td className={entry.beans_full ? 'status-ok' : 'status-fail'}>
+                {entry.beans_full ? 'OK' : 'FAIL'}
+              </td>
+              <td className={entry.water_filled ? 'status-ok' : 'status-fail'}>
+                {entry.water_filled ? 'OK' : 'FAIL'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
