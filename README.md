@@ -104,7 +104,7 @@ Let's add users to the system - as this is a workshop, we should create 3 demo u
   We want to be able to assign a user to a task on the /tasks page
 ```
 
-![Looks like a plan](images/plan-users.png)
+![Looks like a plan](images/plan-users.jpg)
 
 ## Claude skills
 
