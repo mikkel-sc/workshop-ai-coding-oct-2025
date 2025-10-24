@@ -96,6 +96,16 @@ And now undo your changes again, (and clear your context `/clear` in Claude), be
 
 TODO: demo a sub agent that knows about frontend standards, and can fix the problem
 
+```text
+Let's add users to the system - as this is a workshop, we should create 3 demo users:\
+  * Dave\
+  * Sharon\
+  * Eunice\
+  We want to be able to assign a user to a task on the /tasks page
+```
+
+![Looks like a plan](images/plan-users.png)
+
 ## Claude skills
 
 TODO:

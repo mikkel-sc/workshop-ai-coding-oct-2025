@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getTasks, updateTask } from '../api/tasksApi';
-import type { Task } from '../types';
+import { getUsers } from '../api/usersApi';
+import type { Task, User } from '../types';
 
 export function TasksPage() {
   const queryClient = useQueryClient();
@@ -9,6 +10,12 @@ export function TasksPage() {
   const { data: tasks, error, isLoading } = useQuery<Task[]>({
     queryKey: ['tasks'], // Unique key for this query
     queryFn: getTasks,   // The async function to fetch data
+  });
+
+  // Fetch users for assignment dropdown
+  const { data: users } = useQuery<User[]>({
+    queryKey: ['users'],
+    queryFn: getUsers,
   });
 
   // 2. useMutation to update a task (mark as complete)
@@ -28,6 +35,13 @@ export function TasksPage() {
     });
   };
 
+  const handleUserAssignment = (task: Task, userId: string) => {
+    updateTaskMutation.mutate({
+      ...task,
+      assignedUserId: userId || undefined,
+    });
+  };
+
   // 3. Render logic
   if (isLoading) return <div>Loading tasks...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -43,7 +57,7 @@ export function TasksPage() {
       {openTasks.length === 0 && <p>No open tasks. Well done!</p>}
       <ul>
         {openTasks.map((task) => (
-          <li key={task.id} style={{ marginBottom: '5px' }}>
+          <li key={task.id} style={{ marginBottom: '10px' }}>
             <label>
               <input
                 type="checkbox"
@@ -52,6 +66,20 @@ export function TasksPage() {
               />
               {task.description}
             </label>
+            {users && (
+              <select
+                value={task.assignedUserId || ''}
+                onChange={(e) => handleUserAssignment(task, e.target.value)}
+                style={{ marginLeft: '10px' }}
+              >
+                <option value="">Unassigned</option>
+                {users.map((user) => (
+                  <option key={user.id} value={user.id}>
+                    {user.name}
+                  </option>
+                ))}
+              </select>
+            )}
           </li>
         ))}
       </ul>
@@ -60,7 +88,7 @@ export function TasksPage() {
       {completedTasks.length === 0 && <p>No completed tasks yet.</p>}
       <ul>
         {completedTasks.map((task) => (
-          <li key={task.id} style={{ textDecoration: 'line-through', opacity: 0.6 }}>
+          <li key={task.id} style={{ textDecoration: 'line-through', opacity: 0.6, marginBottom: '10px' }}>
             <label>
               <input
                 type="checkbox"
@@ -69,6 +97,20 @@ export function TasksPage() {
               />
               {task.description}
             </label>
+            {users && (
+              <select
+                value={task.assignedUserId || ''}
+                onChange={(e) => handleUserAssignment(task, e.target.value)}
+                style={{ marginLeft: '10px' }}
+              >
+                <option value="">Unassigned</option>
+                {users.map((user) => (
+                  <option key={user.id} value={user.id}>
+                    {user.name}
+                  </option>
+                ))}
+              </select>
+            )}
           </li>
         ))}
       </ul>

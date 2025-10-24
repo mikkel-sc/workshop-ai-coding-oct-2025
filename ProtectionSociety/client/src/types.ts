@@ -6,11 +6,17 @@ export interface ChecklistEntry {
   water_filled: boolean;
 }
 
+export interface User {
+  id: string;
+  name: string;
+}
+
 export interface Task {
   id: string;
   description: string;
   completed: boolean;
   sourceChecklistId?: string;
+  assignedUserId?: string;
 }
 
 // For creating new items (ID is handled by json-server)

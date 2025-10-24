@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "name": "Dave"
+    },
+    {
+      "id": "2",
+      "name": "Sharon"
+    },
+    {
+      "id": "3",
+      "name": "Eunice"
+    }
+  ],
   "checklist": [
     {
       "id": "1",
@@ -34,13 +48,15 @@
       "id": "1",
       "description": "Fill the coffee beans",
       "completed": false,
-      "sourceChecklistId": "2"
+      "sourceChecklistId": "2",
+      "assignedUserId": "1"
     },
     {
       "id": "f552",
       "description": "Fill the coffee beans",
       "completed": false,
-      "sourceChecklistId": "200b"
+      "sourceChecklistId": "200b",
+      "assignedUserId": "2"
     },
     {
       "id": "eed1",
