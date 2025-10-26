@@ -108,10 +108,97 @@ Let's add users to the system - as this is a workshop, we should create 3 demo u
 
 ## Claude skills
 
-TODO:
+Skills are reusable AI capabilities that Claude automatically invokes when relevant. Instead of explaining patterns repeatedly, you package expertise into skill files that Claude discovers and uses. Besides, skills can include executable scripts agent can invoke for more predictable results.
 
-- demo a skill that knows about frontend standards, (using examples)
-- fix the problem with the skill.
-- Also Claude can generally look through the codebase and find and plan using the skill
-- Create an extensive plan and write it out
-- Work on the plan in parallel (as there are updated for redux and fetch in seperate pages)
+### The Problem: Inconsistent Data Structure
+
+Examine `ProtectionSociety/db.json`. Notice the ID formats:
+- Simple numbers: `"1"`, `"2"`, `"3"`
+- Hexadecimal: `"200b"`, `"672d"`, `"f552"`, `"eed1"`
+
+Let's say we want UUIDs for scalability. More importantly, we'll have future migrations (renaming fields, restructuring tables). Writing migration scripts manually is tedious and error-prone when maintaining referential integrity.
+
+### The Solution: Migration Script Creator Skill
+
+This repository includes a pre-created `data-migration` skill that generates safe, transactional migration scripts for db.json transformations. The skill:
+
+- Analyzes database structure and detects foreign key relationships
+- Plans migration phases in dependency order (parent tables before children)
+- Generates Node.js scripts with ID mapping, validation, and rollback
+- Includes a schema analyzer tool (`.claude/skills/data-migration/scripts/analyze-schema.js`)
+- Maintains referential integrity throughout the migration
+
+Claude will automatically invoke this skill when you describe database migrations.
+
+#### Using the Skill
+
+Open a new Claude Code instance, then give Claude Code this prompt:
+
+```text
+Create a migration script to convert all IDs in @ProtectionSociety/db.json to UUIDs while maintaining referential integrity.
+```
+
+Claude Code _should_*:
+1. Automatically invoke the `data-migration` skill, which will
+   1. You'll see `> The "data-migration" skill is running` if that happens
+2. Invoke the `analyze-schema.js` to analyse the `db.json` structure
+3. Detect that tasks references users and checklist
+4. Generate a transactional migration script with phases
+5. Include validation and rollback instructions
+
+In case it doesn't, you can explicitly ask it to use the skill:
+```
+Use the data-migration skill to create a migration script that converts all IDs in @ProtectionSociety/db.json to UUIDs while maintaining referential integrity.
+```
+
+Now, run the generated migration script or ask Claude Code to do it. After running, you should see that all IDs in `db.json` are now UUIDs and all references are intact.
+
+### Exploring the Skill Structure
+
+Now that you've seen the skill in action, let's explore how it works:
+
+```
+.claude/skills/data-migration/
+├── SKILL.md              # Main skill definition
+└── scripts/
+    └── analyze-schema.js # Schema analysis utility
+```
+
+**Key components of SKILL.md:**
+
+- **YAML frontmatter**: The `description` field contains trigger keywords (migrate, convert IDs, UUIDs, db.json) that help Claude decide when to invoke this skill automatically
+- **Core principles**: Fundamental rules for safe migrations (analyze dependencies, plan phases, maintain integrity, etc.)
+- **Schema analyzer reference**: The skill instructs Claude to use `analyze-schema.js` for deterministic database structure analysis. In real world this could fetch the database schema.
+- **Template structure**: Provides a complete migration script pattern with phases, validation, and rollback
+- **Conciseness**: Kept under 500 lines using progressive disclosure principles
+
+**The scripts/ directory:**
+
+The `analyze-schema.js` script provides deterministic, verifiable analysis of db.json structure. By bundling executable scripts with skills, you make Claude's behavior more predictable and reliable for complex operations.
+
+### Creating Your Own Skill
+
+Now that you've used the data-migration skill, you might want to create custom skills for your own workflows. Anthropic provides a [skill-creator](https://github.com/anthropics/skills/tree/main/skill-creator) skill - a meta-skill that helps Claude guide you through building new skills!
+
+**Key steps to create effective skills:**
+
+1. **Identify the workflow**: Look for repetitive tasks where you find yourself explaining the same patterns to Claude repeatedly
+2. **Use the skill-creator skill**: Ask Claude to help you build a skill, and it will guide you through the process using best practices
+3. **Write a clear description**: Include both what the skill does AND when Claude should use it, with specific trigger keywords
+4. **Keep it concise**: Aim for under 500 lines in SKILL.md, using progressive disclosure for detailed content
+5. **Bundle executable scripts**: For deterministic operations (like schema analysis, validation, formatting), provide scripts rather than instructions
+6. **Test across models**: Verify your skill works well with Haiku, Sonnet, and Opus
+
+**Example skill ideas:**
+- Code review checklists specific to your team's standards
+- API integration patterns for your commonly-used services
+- Testing strategy templates for different project types
+- Documentation generation following your style guides
+
+Skills committed to `.claude/skills/` in your repository are automatically shared with your team!
+
+**Further Reading:**
+
+- [Agent Skills Documentation](https://docs.claude.com/en/docs/claude-code/skills) - Official guide to creating and using skills
+- [Skill Authoring Best Practices](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices) - Guidelines for effective skill design
+- [Example Skills Repository](https://github.com/anthropics/skills) - Collection of community skills for reference
