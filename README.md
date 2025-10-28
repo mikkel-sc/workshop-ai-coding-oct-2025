@@ -22,7 +22,7 @@ You should now be up and running, and can see the app running here:
 http://localhost:5173/
 ```
 
-## Planning mode
+## Part 1: Planning mode
 
 The planning mode will help you understand what the model is goiong to do, before it does it - this is hugely useful to get predictable results, and make sure you are steering the LLM in the right direction.
 
@@ -92,7 +92,7 @@ This is fantastic, because it means we are able to get the AI to do things witho
 
 And now undo your changes again, (and clear your context `/clear` in Claude), because we are going to take this to the next level!
 
-## Sub agents
+## Part 3: Sub agents
 
 TODO: demo a sub agent that knows about frontend standards, and can fix the problem
 
@@ -106,7 +106,7 @@ Let's add users to the system - as this is a workshop, we should create 3 demo u
 
 ![Looks like a plan](images/plan-users.jpg)
 
-## Claude skills
+## Part 4: Claude Skills
 
 Skills are reusable AI capabilities that Claude automatically invokes when relevant. Instead of explaining patterns repeatedly, you package expertise into skill files that Claude discovers and uses. Besides, skills can include executable scripts agent can invoke for more predictable results.
 
@@ -147,7 +147,7 @@ Claude Code _should_*:
 5. Include validation and rollback instructions
 
 In case it doesn't, you can explicitly ask it to use the skill:
-```
+```text
 Use the data-migration skill to create a migration script that converts all IDs in @ProtectionSociety/db.json to UUIDs while maintaining referential integrity.
 ```
 
