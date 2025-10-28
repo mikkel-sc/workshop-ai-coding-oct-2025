@@ -123,7 +123,7 @@ Now let's use it!
 Use the @agent-frontend-best-practices-enforcer to find the bug whereby we are not showing the cleanliness score in the @AnalyticsPage.tsx, and then please fix.
 ```
 
-It will now have fixed the things!
+It will now have fixed the issues!
 
 ![fixed the things](/images/fixed-the-things.jpg)
 
