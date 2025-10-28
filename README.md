@@ -174,8 +174,18 @@ Let's say we want UUIDs for scalability. More importantly, we'll have future mig
 
 ### The Solution: Migration Script Creator Skill
 
-This repository includes a pre-created `data-migration` skill that generates safe, transactional migration scripts for db.json transformations. The skill:
+This repository includes a pre-created `part4/data-migration` skill that generates safe, transactional migration scripts for db.json transformations. 
 
+Copy the `part4/data-migration/` folder into `.claude/skills/`. The final file structure should look like this:
+
+```
+.claude/skills/data-migration/
+├── SKILL.md
+└── scripts/
+    └── analyze-schema.js
+```
+
+The skill:
 - Analyzes database structure and detects foreign key relationships
 - Plans migration phases in dependency order (parent tables before children)
 - Generates Node.js scripts with ID mapping, validation, and rollback
@@ -233,8 +243,13 @@ Now that you've seen the skill in action, let's explore how it works:
 The `analyze-schema.js` script provides deterministic, verifiable analysis of db.json structure. By bundling executable scripts with skills, you make Claude's behavior more predictable and reliable for complex operations.
 
 ### Creating Your Own Skill
+Now that you've used the data-migration skill, you might want to create custom skills. 
 
-Now that you've used the data-migration skill, you might want to create custom skills for your own workflows. Anthropic provides a [skill-creator](https://github.com/anthropics/skills/tree/main/skill-creator) skill - a meta-skill that helps Claude guide you through building new skills!
+Feel free to move the pre-created `data-migration` skill back to `part4/data-migration/`, and try to recreate it from scratch using the guidelines below.
+
+Anthropic provides a [skill-creator](https://github.com/anthropics/skills/tree/main/skill-creator) skill - a meta-skill that helps Claude guide you through building new skills!
+
+Claude Code doesn't seem to load skills dynamically yet, so you might want to open a new Claude Code instance it a new terminal tab after modifying the skill.
 
 **Key steps to create effective skills:**
 
@@ -245,14 +260,13 @@ Now that you've used the data-migration skill, you might want to create custom s
 5. **Bundle executable scripts**: For deterministic operations (like schema analysis, validation, formatting), provide scripts rather than instructions
 6. **Test across models**: Verify your skill works well with Haiku, Sonnet, and Opus
 
-**Example skill ideas:**
+**Other skill ideas:**
+Alternatively, you can create skills for various common tasks in your projects, such as:
 
 - Code review checklists specific to your team's standards
 - API integration patterns for your commonly-used services
 - Testing strategy templates for different project types
 - Documentation generation following your style guides
-
-Skills committed to `.claude/skills/` in your repository are automatically shared with your team!
 
 **Further Reading:**
 
