@@ -155,7 +155,7 @@ Once you get your plan, accept all edits and let it create the solution - you sh
 
 ![Tasks page updated](images/task-assigned.jpg)
 
-Go to `http://localhost:5173/tasks` and assign a user to one oe more tasks - you can now look at `ProtectionSociety/db.json`, and you should see the data including assigned users.
+Go to [http://localhost:5173/tasks](http://localhost:5173/tasks) and assign a user to one or more tasks - you can now look at `ProtectionSociety/db.json`, and you should see the data including assigned users.
 
 This concludes part 3, well done!
 
