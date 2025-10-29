@@ -2,10 +2,13 @@
 
 This is a demo app for "ProtectionSociety", a fictional Checklist app that is very successful, but has a legacy codebase that AI coding assistants often struggle to deal with.
 
+![protection society... sounds familiar!](ProtectionSociety/client/public/logo.jpg)
+
 In this workshop we aim to:
 
 - Demonstrate how to best use Planning mode
 - How to effectively manage your context
+- Look at using sub-agents
 - What can we do with Claude skills
 
 ## Getting started
