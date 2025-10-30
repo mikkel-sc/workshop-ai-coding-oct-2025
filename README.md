@@ -43,7 +43,11 @@ Paste that in Claude and submit it. Once the fix is done, you'll see that the AI
 
 ![Clean and lean](images/cleanscore-v1.png)
 
-Now undo the changes we just made, clear your context (do `/clear` in Claude), and we'll try again, with planning mode enabled.
+Now undo the changes we just made in claude, we can use the `/rewind` feature like so:
+
+![Be kind, rewind](images/be-kind-rewind.gif)
+
+Next clear your context (do `/clear` in Claude), and we'll try again, with planning mode enabled.
 With the Claude Code terminal focused, press `shift+tab` till you see "Plan mode on" underneath the input.
 
 Now paste the same prompt and press enter:
@@ -177,7 +181,7 @@ Let's say we want UUIDs for scalability. More importantly, we'll have future mig
 
 ### The Solution: Migration Script Creator Skill
 
-This repository includes a pre-created `part4/data-migration` skill that generates safe, transactional migration scripts for db.json transformations. 
+This repository includes a pre-created `part4/data-migration` skill that generates safe, transactional migration scripts for db.json transformations.
 
 Copy the `part4/data-migration/` folder into `.claude/skills/`. The final file structure should look like this:
 
@@ -189,6 +193,7 @@ Copy the `part4/data-migration/` folder into `.claude/skills/`. The final file s
 ```
 
 The skill:
+
 - Analyzes database structure and detects foreign key relationships
 - Plans migration phases in dependency order (parent tables before children)
 - Generates Node.js scripts with ID mapping, validation, and rollback
@@ -246,7 +251,8 @@ Now that you've seen the skill in action, let's explore how it works:
 The `analyze-schema.js` script provides deterministic, verifiable analysis of db.json structure. By bundling executable scripts with skills, you make Claude's behavior more predictable and reliable for complex operations.
 
 ### Creating Your Own Skill
-Now that you've used the data-migration skill, you might want to create custom skills. 
+
+Now that you've used the data-migration skill, you might want to create custom skills.
 
 Feel free to move the pre-created `data-migration` skill back to `part4/data-migration/`, and try to recreate it from scratch using the guidelines below.
 
